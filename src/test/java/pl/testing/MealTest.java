@@ -51,6 +51,14 @@ class MealTest {
         //then
         assertEquals(meal1,meal2);
         //lub
-        Assertions.assertThat(meal1).isSameAs(meal2);
+        Assertions.assertThat(meal1).isEqualTo(meal2);
+    }
+    @Test
+    void exceptionShouldBeThrownIfDiscountIsHigherThanThePrice(){
+        //given
+        Meal meal1 = new Meal(10,"Pizza");
+        //when
+        //then
+        assertThrows(IllegalArgumentException.class, () -> meal1.getDiscount(20));
     }
 }
