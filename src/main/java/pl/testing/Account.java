@@ -17,11 +17,21 @@ public class Account {
         active = false;
     }
 
-    public void activate(boolean active) {
+    public void activate() {
         this.active = true;
     }
 
     public boolean isActive() {
         return this.active;
+    }
+
+    public Account(Address defaultDeliveryAddress) {
+        this.defaultDeliveryAddress = defaultDeliveryAddress;
+        if(defaultDeliveryAddress != null){
+            activate();
+        }
+        else {
+            this.active = false;
+        }
     }
 }

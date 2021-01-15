@@ -14,6 +14,10 @@ public class Cart {
         this.orders.clear();
     }
 
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     void simulateLargeOrder() {
         for (int i = 0; i < 1_000; i++) {
             Meal meal = new Meal(i%10,"Pizza nr" + i);
