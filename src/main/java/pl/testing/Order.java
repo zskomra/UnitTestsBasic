@@ -18,4 +18,11 @@ public class Order {
     public void removeMeal(Meal meal) {
         this.meals.remove(meal);
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "meals=" + meals +
+                '}';
+    }
 }
