@@ -1,0 +1,70 @@
+package pl.testing;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.*;
+
+class AccountTest {
+
+    @Test
+    @DisplayName("Check if new account is not active")
+    void checkIfNewAccountIsNotActiveAfterCreation() {
+        //given
+        //when
+        Account account = new Account();
+        //then
+        assertFalse(account.isActive());
+        //lub
+//        assertThat(account.isActive(), equalTo(false)); //-hamcrest
+//        //lub
+//        assertThat(account.isActive(), is(false)); //-hamcrest
+        //lub
+
+        assertThat(account.isActive()).isFalse();
+    }
+    @Test
+    @DisplayName("Check if new account is active after activation")
+    void checkIfNewAccountIsActiveAfterActivation(){
+        //given
+        Account account = new Account();
+        //when
+        account.activate(true);
+        //then
+        assertTrue(account.isActive());
+    }
+
+    @Test
+    void newlyCreatedAccountShouldNotHaveDefaultDeliveryAddress() {
+        //given
+        Account account = new Account();
+        //when
+        Address address = account.getDefaultDeliveryAddress();
+        //then
+        assertNull(address);
+        //lub
+//        assertThat(address,nullValue()); //--hamcrest
+        //lub
+        assertThat(address).isNull();
+    }
+
+    @Test
+    void newlyCreatedAccountShouldNotBeNullAfterBeingSet(){
+        //given
+        Address address = new Address("bydgoska",4);
+        Account account = new Account();
+        account.setDefaultDeliveryAddress(address);
+        //when
+        Address defaultAddress = account.getDefaultDeliveryAddress();
+        //then
+        assertNotNull(defaultAddress);
+        //lub
+//        assertThat(defaultAddress,notNullValue()); //-- Hamcrest
+        //lub
+        assertThat(defaultAddress).isNotNull();
+
+    }
+
+}

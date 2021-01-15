@@ -1,0 +1,26 @@
+CUT - code under test
+Jeden test sprawdza tylko jedną część kodu
+Testy integracyjne - testuja jak zachowa sie program z baza danych, zewnetrznym serwisem
+e2e - testuje sie system z poziomu uzytkownika, sprawdza cale funkcjonalnosci biznesowe(testy manualne żeby przeklikac z graficznego punktu widzenia)
+
+Odpalanie testow w terminalu mvn test , mvn -Dtest=NazwaKlasy test (poprzecinku nazwy klas mozna robic), metode -Dtest=NazwaKlasy#nazwaMetody test
+
+BDD- Behavior-driven developmen
+
+Matchery - AssertThat - wykorzystanie biblioteki hamcrest 
+(assertThat(
+a) (x) equalTo (lub) is (y) 
+b) x, nullValue v x, notNullValue
+c) sameInstance 
+d)itd ->
+http://hamcrest.org/
+Kolekcje
+assertThat(x , (hasSize, contains, empty, equalTo, emptyCollectionOf(nazwa.clasS), hasSize))
+
+AssertJ
+podobnie jak hamcrest
+a)assertThat(wartość).isTrue();//false
+b)isNull/notNull
+c)isSameAs 
+d)itd -> https://assertj.github.io/doc/
+
