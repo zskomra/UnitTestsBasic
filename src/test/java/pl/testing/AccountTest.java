@@ -1,5 +1,6 @@
 package pl.testing;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -9,12 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AccountTest {
 
+    Account account;
+
+    @BeforeEach
+    void setUp(){
+        account = new Account();
+    }
+
     @Test
     @DisplayName("Check if new account is not active")
     void checkIfNewAccountIsNotActiveAfterCreation() {
         //given
         //when
-        Account account = new Account();
         //then
         assertFalse(account.isActive());
         //lub
@@ -29,7 +36,6 @@ class AccountTest {
     @DisplayName("Check if new account is active after activation")
     void checkIfNewAccountIsActiveAfterActivation(){
         //given
-        Account account = new Account();
         //when
         account.activate(true);
         //then
@@ -39,7 +45,6 @@ class AccountTest {
     @Test
     void newlyCreatedAccountShouldNotHaveDefaultDeliveryAddress() {
         //given
-        Account account = new Account();
         //when
         Address address = account.getDefaultDeliveryAddress();
         //then
@@ -54,7 +59,6 @@ class AccountTest {
     void newlyCreatedAccountShouldNotBeNullAfterBeingSet(){
         //given
         Address address = new Address("bydgoska",4);
-        Account account = new Account();
         account.setDefaultDeliveryAddress(address);
         //when
         Address defaultAddress = account.getDefaultDeliveryAddress();

@@ -1,5 +1,7 @@
 package pl.testing;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -12,6 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
 
+    private Order order;
+
+    @BeforeEach
+    void setUp(){
+        order = new Order();
+    }
+
     @Test
     void testAssertArrayEquals() {
         //given
@@ -23,8 +32,6 @@ class OrderTest {
 
     @Test
     void mealListShouldBeEmptyAfterCreationOrder() {
-        //given
-        Order order = new Order();
         //then
         assertThat(order.getMeals(), empty());
         assertThat(order.getMeals().size(), equalTo(0));
@@ -36,7 +43,6 @@ class OrderTest {
     void addingMealToOrderShouldIncreaseOrderSize() {
         //given
         Meal meal = new Meal(20);
-        Order order = new Order();
         //when
         order.addMealToOrder(meal);
         //then
@@ -50,7 +56,6 @@ class OrderTest {
     void removingMealFromOrderShouldDecreaseOrderSize() {
         //given
         Meal meal = new Meal(20);
-        Order order = new Order();
         order.addMealToOrder(meal);
         //when
         order.removeMeal(meal);
@@ -64,7 +69,6 @@ class OrderTest {
         //given
         Meal meal = new Meal(20, "sandwich");
         Meal meal2 = new Meal(15, "burger");
-        Order order = new Order();
         //when
         order.addMealToOrder(meal);
         order.addMealToOrder(meal2);
