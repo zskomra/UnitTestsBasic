@@ -2,6 +2,7 @@ package pl.testing;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestFactory;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,8 +11,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import pl.testing.extension.IAExceptionIgnoreExtension;
+import pl.testing.order.Order;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -53,10 +55,10 @@ class MealTest {
         //lub
         assertThat(meal1, not(sameInstance(meal2)));
         //lub
-        Assertions.assertThat(meal1).isSameAs(meal2);
+        Assertions.assertThat(meal1).isNotSameAs(meal2);
 
     }
-
+    @Tag("pizza")
     @Test
     void twoMealShouldBeEqualWhenPriceAndNameAreTheSame() {
         //given
@@ -114,7 +116,7 @@ class MealTest {
         if(price > 5) {
             throw new IllegalArgumentException();
         }
-        assertThat(price, lessThan(20));
+        assertThat(price, greaterThan(0));
     }
 
     @TestFactory
@@ -134,7 +136,7 @@ class MealTest {
             };
             String name = "Test name : " + i;
             DynamicTest dynamicTest = DynamicTest.dynamicTest(name,executable);
-            dynamicTests.add(dynamicTest); 
+            dynamicTests.add(dynamicTest);
         }
 
         return dynamicTests;

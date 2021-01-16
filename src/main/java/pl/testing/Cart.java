@@ -1,5 +1,7 @@
 package pl.testing;
 
+import pl.testing.order.Order;
+
 import java.util.ArrayList;
 import java.util.List;
 

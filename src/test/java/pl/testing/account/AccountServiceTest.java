@@ -1,0 +1,7 @@
+package pl.testing.account;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AccountServiceTest {
+
+}
