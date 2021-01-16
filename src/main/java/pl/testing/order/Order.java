@@ -7,10 +7,16 @@ import java.util.List;
 
 public class Order {
 
+    private OrderStatus orderStatus;
+
     private List<Meal> meals = new ArrayList<>();
 
     public List<Meal> getMeals() {
         return meals;
+    }
+
+    public void changeOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     public void addMealToOrder(Meal meal) {
@@ -26,5 +32,9 @@ public class Order {
         return "Order{" +
                 "meals=" + meals +
                 '}';
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
     }
 }
