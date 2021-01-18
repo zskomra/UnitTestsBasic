@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.Or;
 import pl.testing.order.Order;
 import pl.testing.order.OrderStatus;
 
@@ -233,6 +234,22 @@ class CartServiceTest {
         assertThat(result.getOrders().size(), equalTo(0));
 
     }
-    
-    }
+
+        @Test
+        void deliveryShouldBeFree() {
+        //given
+            Cart cart = new Cart();
+            cart.addOrderToCart(new Order());
+            cart.addOrderToCart(new Order());
+            cart.addOrderToCart(new Order());
+
+            CartHandler cartHandler = Mockito.mock(CartHandler.class);
+            when(cartHandler.isDeliveryFree(cart)).thenCallRealMethod();
+            doCallRealMethod().when(cartHandler).isDeliveryFree(cart);
+            //when
+            boolean isDeliverFree = cartHandler.isDeliveryFree(cart);
+
+            //then
+            assertTrue(isDeliverFree);
+        }
 }
