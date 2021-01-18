@@ -202,4 +202,37 @@ class CartServiceTest {
         assertThat(result.getOrders().get(0).getOrderStatus(), equalTo(OrderStatus.PREPARING));
 
     }
+
+    @Test
+    void shouldAnswerWhenProcessCart() {
+        //given
+        Order order = new Order();
+        Cart cart = new Cart();
+        cart.addOrderToCart(order);
+
+        CartHandler cartHandler = Mockito.mock(CartHandler.class);
+        CartService cartService = new CartService(cartHandler);
+
+        doAnswer(invocationOnMock -> {
+            Cart argumentCart = invocationOnMock.getArgument(0);
+            argumentCart.clearCart();
+            return true;
+        }).when(cartHandler).canHandleCart(cart);
+
+        when(cartHandler.canHandleCart(cart)).then(i-> {
+            Cart argumentCart = i.getArgument(0);
+            argumentCart.clearCart();
+            return true;
+        });
+
+        //when
+        Cart result = cartService.processCart(cart);
+
+        //then
+        then(cartHandler).should().sendToPrepare(cart);
+        assertThat(result.getOrders().size(), equalTo(0));
+
+    }
+    
+    }
 }
