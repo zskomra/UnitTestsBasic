@@ -57,4 +57,11 @@ public class Meal {
                 ", name='" + name + '\'' +
                 '}';
     }
+
+    public int sumPrice() {
+        return this.getPrice() * this.getQuantity();
+    }
+
+    public Meal() {
+    }
 }

@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.mockito.Mockito;
 import pl.testing.extension.IAExceptionIgnoreExtension;
 import pl.testing.order.Order;
 
@@ -23,6 +24,8 @@ import java.util.stream.Stream;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.spy;
 
 class MealTest {
 
@@ -140,6 +143,19 @@ class MealTest {
         }
 
         return dynamicTests;
+    }
+
+    @Test
+    void testMealSumPriceWithSpy() {
+        //given
+        Meal meal = spy(Meal.class);
+
+        given(meal.getPrice()).willReturn(22);
+        given(meal.getQuantity()).willReturn(2);
+        //when
+        int result = meal.sumPrice();
+        //then
+        assertThat(result, equalTo(44));
     }
 
     private int calculatePrice(int price, int quantity) {
