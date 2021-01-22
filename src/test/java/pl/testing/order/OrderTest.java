@@ -4,9 +4,8 @@ import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import pl.testing.Meal;
+import pl.testing.meal.Meal;
 import pl.testing.extension.BeforeAfterExtension;
-import pl.testing.order.Order;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,4 +1,4 @@
-package pl.testing;
+package pl.testing.meal;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
@@ -11,8 +11,8 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.mockito.Mockito;
 import pl.testing.extension.IAExceptionIgnoreExtension;
+import pl.testing.meal.Meal;
 import pl.testing.order.Order;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package pl.testing;
+package pl.testing.meal;
 
 import java.util.Objects;
 
@@ -63,5 +63,9 @@ public class Meal {
     }
 
     public Meal() {
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
