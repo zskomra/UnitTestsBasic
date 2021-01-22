@@ -76,11 +76,34 @@ public class MealRepositoryTest {
     void shouldBeAbleToFindMealByPrice(){
         //given
         Meal meal = new Meal(12,"hot-dog");
+        Meal meal2 = new Meal(10,"pizza");
+        Meal meal3 = new Meal(3,"fries");
         mealRepository.add(meal);
+        mealRepository.add(meal2);
+        mealRepository.add(meal3);
         //when
-        List<Meal> results = mealRepository.findByPrice(12);
+        List<Meal> results = mealRepository.findByPrice(12,SearchType.HIGHER);
+        List<Meal> resultsExact = mealRepository.findByPrice(12,SearchType.EXACT);
+        List<Meal> resultsLess = mealRepository.findByPrice(12,SearchType.LESS);
         //then
-        assertThat(results.size(),is(1));
+        assertThat(results.size(),is(0));
+        assertThat(resultsExact.size(), is(1));
+        assertThat(resultsLess.size(), is(2));
+    }
+
+    @Test
+    void shouldBeAbleToFindMealByNameAndPrice() {
+        //given
+        Meal meal = new Meal(12,"hot-dog");
+        Meal meal2 = new Meal(12,"hot-pizza");
+        Meal meal3 = new Meal(3,"fries");
+        mealRepository.add(meal);
+        mealRepository.add(meal2);
+        mealRepository.add(meal3);
+        //when
+        List<Meal> results = mealRepository.find("hot",false,12,SearchType.EXACT);
+        //then
+        assertThat(results.size(),is(2));
     }
     
 
